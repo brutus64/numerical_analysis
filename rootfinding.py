@@ -1,20 +1,21 @@
 import numpy as np
 import time
 
-def eval_sign(v: np.float16) -> int: 
-    return np.sign(np.float16(np.e)**(-v**3) - (v**4) - np.sin(v))
+def eval_sign(v: np.float64) -> int: 
+    return np.sign(np.float64(np.e)**(-v**3) - (v**4) - np.sin(v))
 
 def evaluate(v: np.float64) -> np.float64:
     return np.e**(-v**3) - (v**4) - np.sin(v)
 
-def bisection(a:np.float32,b:np.float32) -> np.float64:
+def bisection(a: int,b: int) -> np.float64:
+    a, b = np.float64(a), np.float64(b)
     sign_a = eval_sign(a)
     #sign_b = eval_sign(b)
-    while b-a > 0.00005: #need to be accurate within 0.00005
+    while b-a > 0.00005: #need to be accurate within 0.00005 //wanted 0.641583
         c = (a+b)/2
         print(f"value a:{a}, b:{b}, c:{c}")
         print(f"eval a:{evaluate(a)}, b:{evaluate(b)}, c:{evaluate(c)}")
-        sign_c = eval_sign(np.float16(c))
+        sign_c = eval_sign(np.float64(c))
         if sign_a * sign_c < 0: #root in a side, set b to be middle (no need sign_b)
             b = c
             # sign_b = sign_c
