@@ -1,4 +1,5 @@
 import numpy as np
+from sympy import symbols, diff, sin, lambdify
 import time
 
 def eval_sign(v: np.float64) -> int: 
@@ -6,6 +7,14 @@ def eval_sign(v: np.float64) -> int:
 
 def evaluate(v: np.float64) -> np.float64:
     return np.e**(-v**3) - (v**4) - np.sin(v)
+
+def deriv():
+    x = symbols('x')
+    f = np.e**(-x**3) - (x**4) - sin(x)
+    f_deriv = diff(f, x)
+    # print("Derivative", f_deriv)
+    # print(type(lambdify(x,f_deriv)))
+    return lambdify(x,f_deriv) #turns sympy expressions into lambda functions (anonymous funct)
 
 def bisection(a: int,b: int) -> np.float64:
     a, b = np.float64(a), np.float64(b)
@@ -24,7 +33,17 @@ def bisection(a: int,b: int) -> np.float64:
     return (a+b)/2 #the final boundary is set, get middle of that
 
 def newton(x: int) -> np.float64:
-    pass
+    f_deriv = deriv() #grabs the derivative 
+    curr = x
+    while True:
+        new_x = curr - evaluate(curr)/f_deriv(curr)
+        if abs(new_x - curr) <= 0.00005:
+            curr = new_x
+            break
+        curr = new_x
+    print(curr)
+    print(evaluate(curr))
+    return curr
 
 def secant(a: int, b: int) -> np.float64:
     pass
