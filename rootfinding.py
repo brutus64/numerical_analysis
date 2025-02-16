@@ -38,17 +38,20 @@ def newton(x: int) -> np.float64:
     while True:
         new_x = curr - evaluate(curr)/f_deriv(curr)
         if abs(new_x - curr) <= 0.00005:
-            curr = new_x
-            break
+            return new_x
         curr = new_x
-    print(curr)
-    print(evaluate(curr))
-    return curr
+    return None
 
-def secant(a: int, b: int) -> np.float64:
-    pass
-
+def secant(x1: int, x2: int) -> np.float64:
+    while True:
+        eval_x1, eval_x2 = evaluate(x1), evaluate(x2)
+        new_x = x2 - eval_x2/((eval_x2 - eval_x1)/(x2 - x1))
+        if abs(new_x - x2) <= 0.00005:
+            return new_x
+        x1, x2 = x2, new_x
+    return None
 def monte_carlo(a: int, b: int) -> np.float64:
+    
     pass
 
 if __name__ == "__main__":
