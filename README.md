@@ -14,11 +14,16 @@ python3 tesla.py
 
 mac:
 ```
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python3 rootfinding.py
 python3 tesla.py
+```
+
+To deactivate venv, you can just type:
+```
+deactivate
 ```
 
 NOTE: you can ignore creating a virtual environment if you don't want to, can just do pip install -r requirements.txt
