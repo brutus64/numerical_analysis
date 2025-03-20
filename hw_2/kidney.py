@@ -48,10 +48,10 @@ def rect(n): #midpoint method
     total2 = 0
     for pt in arr1: #get the evaluation and multiply by step size
         total += step_size1 * eval_kidney(pt)
-        print("amount added kidney: ", step_size1 * eval_kidney(pt))
+        # print("amount added kidney: ", step_size1 * eval_kidney(pt))
     for pt in arr2:
         total2 += step_size2 *eval_disc(pt)
-        print("amount added disc: ", step_size2 * eval_disc(pt))
+        # print("amount added disc: ", step_size2 * eval_disc(pt))
     print("Rectangle method:")
     print(f"Kidney area: {total}, Disc area: {total2}")
     print(f"Total area: {total-total2}")
