@@ -25,14 +25,14 @@ def rose():
     curr_best = monte_sample_rect_area(x, y, alpha)
     
     for i in range(20000):
-        x_mod, y_mod, a_mod = x + random.uniform(-0.1,0.1), y + random.uniform(-0.1,0.1), (alpha + random.uniform(-0.1,0.1)) % 180 #symmetry exists, only need to do up to 180
+        x_mod, y_mod, a_mod = x + random.uniform(-0.1,0.1), y + random.uniform(-0.1,0.1), (alpha + random.uniform(-0.2,0.2)) % 180 #symmetry exists, only need to do up to 180
         new_area = monte_sample_rect_area(x_mod, y_mod, a_mod)
         if new_area > curr_best:
-            print(f"NEW BEST AREA: {new_area} at ITERATION: {i}")
+            print(f"(x,y,a):({x_mod},{y_mod},{a_mod}) NEW BEST AREA: {new_area} at ITERATION: {i}")
             x, y, alpha = x_mod, y_mod, a_mod
             curr_best = new_area
         else:
-            print("area:", new_area)
+            print(f"(x,y,a):({x_mod},{y_mod},{a_mod}) area: {new_area}")
         
     print("Best values:")
     print(f"x: {x}\ny: {y}\nalpha: {alpha}\narea: {curr_best}")

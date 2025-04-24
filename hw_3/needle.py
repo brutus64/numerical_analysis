@@ -24,8 +24,7 @@ def needle(n, w):
                 # print(f"AT this diameter {d} we crossed {lines_crossed}, from {y_point}")
         results[d] = mapping
     for key, value in results.items():
-        print("diameter", key)
-        print("table", value)
+        print("diameter: ", key, "\ntable: ", value)
     plot_results(results, n)
     
 def plot_results(results, n):
@@ -38,13 +37,15 @@ def plot_results(results, n):
     }
     for d in diameters:
         values = results[d]
-        print(d, values)
         for i in range(1, 5): #can cross at least 1 to 4 lines
             count = values.get(i, 0)
             prob = float(count) / float(n)
             data[i].append(prob)
             
-    print(data)
+    for k,v in data.items():
+        print("number of lines: ", k)
+        print("probabilities starting from lowest to largest diameter:")
+        print(v)
     plt.figure(figsize=(12, 8))
     colors = ['blue', 'green', 'red', 'purple']
     labels = ['1 line', '2 lines', '3 lines', '4 lines']

@@ -6,7 +6,7 @@ Idea is to use a virtual environment to then install the dependencies then run p
 windows: 
 ```
 python -m venv .venv
-source .venv/Script/Activate.ps1
+source .venv/Script/Activate.bat
 pip install -r requirements.txt
 python hw_3/needle.py
 python hw_3/plane.py
@@ -18,9 +18,9 @@ mac:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python hw_3/needle.py
-python hw_3/plane.py
-python hw_3/rose.py
+python3 hw_3/needle.py
+python3 hw_3/plane.py
+python3 hw_3/rose.py
 ```
 To deactivate venv, you can just type:
 ```
