@@ -11,7 +11,7 @@ def needle(n, w):
             y_point = random.uniform(0,1)
             if d < w:
                 if y_point + d/2 >= 1 or y_point - d/2 <= 0:
-                    mapping['1'] += 1
+                    mapping[1] += 1
             else:
                 #diameter goes as high as 3, so at best, it can touch -1.5 and 2.5 from a random number 0 to 1
                 possible_lines = [-1, 0, 1, 2]
@@ -26,25 +26,38 @@ def needle(n, w):
     for key, value in results.items():
         print("diameter", key)
         print("table", value)
-    # plot_results(diameters, results, n)    
-# def plot_results(d, results, n):
-#     data = {
-#         0: [],
-#         1: [],
-#         2: [],
-#         3: [],
-#         4: []
-#     }
-#     for val in d:
-#         crossings = results[d]
-#         for x in range(5):
-#             count = sum(crossings[k] for k in crossings if k >= x)
-#             prob = count/n
-#             data[x].append(prob)
-#     fig, ax = plt.subplots(figsize=(12,8))
-#     colors = ['red']
-#     for line_count in ['0','1','2','3']:
-#         if line_count in p:
+    plot_results(results, n)
+    
+def plot_results(results, n):
+    diameters = sorted(results.keys())
+    data = {
+        1: [],
+        2: [],
+        3: [],
+        4: []
+    }
+    for d in diameters:
+        values = results[d]
+        print(d, values)
+        for i in range(1, 5): #can cross at least 1 to 4 lines
+            count = values.get(i, 0)
+            prob = float(count) / float(n)
+            data[i].append(prob)
+            
+    print(data)
+    plt.figure(figsize=(12, 8))
+    colors = ['blue', 'green', 'red', 'purple']
+    labels = ['1 line', '2 lines', '3 lines', '4 lines']
+    for i, lines in enumerate(range(1, 5)):
+        plt.plot(diameters, data[lines], 'o-', color=colors[i], linewidth=2, markersize=8, label=labels[i])
+    plt.xlabel("diameter")
+    plt.ylabel("probability")
+    plt.title("# of at least lines v.s diameter size")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    
              
         
     
