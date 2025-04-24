@@ -48,8 +48,10 @@ def plot_results(results, n):
     plt.figure(figsize=(12, 8))
     colors = ['blue', 'green', 'red', 'purple']
     labels = ['1 line', '2 lines', '3 lines', '4 lines']
-    for i, lines in enumerate(range(1, 5)):
-        plt.plot(diameters, data[lines], 'o-', color=colors[i], linewidth=2, markersize=8, label=labels[i])
+    plt.plot(diameters, data[1], 'o-', color=colors[0], linewidth=2, markersize=8, label=labels[0])
+    plt.plot(diameters, data[2], 's--', color=colors[1], linewidth=2, markersize=8, label=labels[1])
+    plt.plot(diameters, data[3], '^:', color=colors[2], linewidth=2, markersize=8, label=labels[2])
+    plt.plot(diameters, data[4], 'D-.', color=colors[3], linewidth=2, markersize=8, label=labels[3])
     plt.xlabel("diameter")
     plt.ylabel("probability")
     plt.title("# of at least lines v.s diameter size")

@@ -1,9 +1,8 @@
 import numpy as np
 import random
 
-def eval_rose(theta):
-    r = np.sin(2 * theta)
-    return r * np.cos(theta), r * np.sin(theta)
+def is_in_rose(x,y):
+    return (x**2 + y**2)**3 <= 4* x**2 * y**2
 
 def monte_sample_rect_area(x, y, alpha):
     w = 1
@@ -20,10 +19,6 @@ def monte_sample_rect_area(x, y, alpha):
             num_inside += 1
     
     return (num_inside / 10000) * w * h
-    
-
-def is_in_rose(x,y):
-    return (x**2 + y**2)**3 <= 4* x**2 * y**2
 
 def rose():
     x, y, alpha = random.uniform(-1,1), random.uniform(-1,1), random.uniform(0,180)
